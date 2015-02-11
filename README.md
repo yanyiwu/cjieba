@@ -27,5 +27,5 @@ g++ -std=c++11 -DLOGGER_LEVEL=LL_WARN -o c_api.o -c src/c_api.cpp
 
 - i@yanyiwu.com
 
-[CppJieba]:http://github.com/aszxqw/cppjieba
-[libcppjieba]:http://github.com/aszxqw/libcppjieba
+[CppJieba]:http://github.com/yanyiwu/cppjieba
+[libcppjieba]:http://github.com/yanyiwu/libcppjieba
