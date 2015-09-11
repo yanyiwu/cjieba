@@ -1,6 +1,6 @@
-//extern "C" {
-//#include "c_api.h"
-//}
+extern "C" {
+    #include "c_api.h"
+}
 
 #include "CppJieba/MixSegment.hpp"
 
@@ -8,22 +8,22 @@ using namespace CppJieba;
 
 extern "C" {
 
-MixSegment * NewMixSegment(const char* dict_path, const char* hmm_path, const char* user_dict)
-{
-    MixSegment * handler = new MixSegment(dict_path, hmm_path, user_dict);
+CJieba NewCJieba(const char* dict_path, const char* hmm_path, const char* user_dict) {
+    CJieba handler = (CJieba)(new MixSegment(dict_path, hmm_path, user_dict));
     return handler;
 }
-void FreeMixSegment(struct MixSegment* handle)
-{
-    delete handle;
+
+void FreeCJieba(CJieba handle) {
+    MixSegment* x = (MixSegment*)handle;
+    delete x;
 }
-char * MixSegmentCut(const struct MixSegment* segment, const char* sentence, const char* seperator)
-{
+
+char* Cut(CJieba handle, const char* sentence, const char* seperator) {
+    MixSegment* x = (MixSegment*)handle;
     vector<string> words;
-    segment->cut(sentence, words);
+    x->cut(sentence, words);
     string str = join(words.begin(), words.end(), seperator);
-    if(str.empty())
-    {
+    if(str.empty()) {
         return NULL;
     }
     size_t size = str.size() + 1;

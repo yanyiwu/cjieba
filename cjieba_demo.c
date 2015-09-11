@@ -10,12 +10,12 @@ static const char* USER_DICT = "./dict/user.dict.utf8";
 int main()
 {
     // init will take a few seconds to load dicts.
-    struct MixSegment* handle = NewMixSegment(DICT_PATH, HMM_PATH, USER_DICT); 
+    CJieba handle = NewCJieba(DICT_PATH, HMM_PATH, USER_DICT); 
 
-    char* result = MixSegmentCut(handle, "南京市长江大桥", "/"); 
+    char* result = Cut(handle, "南京市长江大桥", "/"); 
     printf("%s\n", result);
 
     free(result);
-    FreeMixSegment(handle);
+    FreeCJieba(handle);
     return 0;
 }
