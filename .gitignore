@@ -1,3 +1,3 @@
-c_api.o
+*.o
 cjieba_demo
-libcjieba.a
+*.a

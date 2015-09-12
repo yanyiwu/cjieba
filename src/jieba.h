@@ -1,10 +1,10 @@
 #ifndef CJIEBA_C_API_H
 #define CJIEBA_C_API_H
 
-typedef void* CJieba;
-CJieba NewCJieba(const char* dict_path, const char* hmm_path, const char* user_dict);
-void FreeCJieba(CJieba);
-char** Cut(CJieba handle, const char* sentence);
+typedef void* Jieba;
+Jieba NewJieba(const char* dict_path, const char* hmm_path, const char* user_dict);
+void FreeJieba(Jieba);
+char** Cut(Jieba handle, const char* sentence);
 void FreeWords(char** words);
 
 #endif
