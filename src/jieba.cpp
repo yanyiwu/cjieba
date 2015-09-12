@@ -1,5 +1,5 @@
 extern "C" {
-    #include "c_api.h"
+    #include "jieba.h"
 }
 
 #include "CppJieba/MixSegment.hpp"

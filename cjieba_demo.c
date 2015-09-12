@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "src/c_api.h"
+#include "src/jieba.h"
 
 static const char* DICT_PATH = "./dict/jieba.dict.utf8";
 static const char* HMM_PATH = "./dict/hmm_model.utf8";
