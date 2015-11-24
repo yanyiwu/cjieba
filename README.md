@@ -8,7 +8,7 @@
 
 ```
 make
-./cjieba_demo
+./demo
 ```
 
 ## 编译相关
