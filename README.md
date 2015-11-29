@@ -1,4 +1,5 @@
-# cjieba
+# cjieba [![Build Status](https://travis-ci.org/yanyiwu/cjieba.png?branch=master)](https://travis-ci.org/yanyiwu/cjieba)
+
 
 其实就是 [CppJieba] 的 C语言 api 接口，
 独立出来作为一个仓库的原因和 [libcppjieba] 一样，
