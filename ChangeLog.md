@@ -3,6 +3,7 @@
 ## next version
 
 + Put [cppjieba] v4.4.0 and [limonp] v0.5.3 into deps/
++ src/ -> lib/
 
 ## v0.1.0
 

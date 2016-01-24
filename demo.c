@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "src/jieba.h"
+#include "lib/jieba.h"
 
 void CutDemo() {
   printf("CutDemo:\n");
