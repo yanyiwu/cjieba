@@ -21,11 +21,11 @@ make
 解决方法是加上 `-std=c++0x` 或者 `-std=c++11` 选项即可，比如：
 
 ```
-g++ -std=c++11 -DLOGGER_LEVEL=LL_WARNING -o c_api.o -c src/c_api.cpp
+g++ -std=c++11 -DLOGGING_LEVEL=LL_WARNING -o c_api.o -c src/c_api.cpp
 ```
 
-还有就是选项 `-DLOGGER_LEVEL=LL_WARNING` 的含义是日志级别设置为警告级别以上才打日志，
-如果不设置该选项则会连 DEBUG 级别的日志也打出来。
+还有就是选项 `-DLOGGING_LEVEL=LL_WARNING` 的含义是日志级别设置为警告级别以上才打日志，
+如果不设置该选项则会连 DEBUG 或者 INFO 级别的日志也打出来。
 
 ## 客服
 
