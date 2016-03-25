@@ -1,5 +1,9 @@
 # CJieba ChangeLog
 
+## next version
+
++ Upgrade [cppjieba] to v4.5.3
+
 ## v0.2.0
 
 + Put [cppjieba] v4.4.0 and [limonp] v0.5.3 into deps/
