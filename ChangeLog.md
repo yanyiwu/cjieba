@@ -1,6 +1,6 @@
 # CJieba ChangeLog
 
-## next version
+## v0.3.0
 
 + Upgrade [cppjieba] to v4.6.0
 + Add CJiebaWord, Update API: [Cut, Extract]
