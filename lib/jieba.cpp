@@ -41,7 +41,8 @@ CJiebaWord* Cut(Jieba handle, const char* sentence, size_t len) {
   return res;
 }
 
-CJiebaWord* CutNoPunc(Jieba handle, const char* sentence, size_t len)
+CJiebaWord*
+CutWithoutTagName(Jieba handle, const char* sentence, size_t len, const char* tagname)
 {
 	cppjieba::Jieba* x = (cppjieba::Jieba*)handle;
 	vector<pair<string, string> > tag_words;
@@ -51,7 +52,7 @@ CJiebaWord* CutNoPunc(Jieba handle, const char* sentence, size_t len)
 	size_t i, j, offset = 0;
 
 	for (i = 0, j = 0; i < tag_words.size(); i++) {
-		if (tag_words[i].second != "x") {
+		if (tag_words[i].second != string(tagname)) {
 			res[j].word = sentence + offset;
 			res[j].len = tag_words[i].first.size();
 			j ++;
@@ -72,7 +73,7 @@ void FreeWords(CJiebaWord* words) {
 bool JiebaInsertUserWord(Jieba handle, const char* word)
 {
 	cppjieba::Jieba* x = (cppjieba::Jieba*)handle;
-	return x->InsertUserWord(string(word));
+	return x->InsertUserWord(string(word), "u");
 }
 
 Extractor NewExtractor(const char* dict_path,

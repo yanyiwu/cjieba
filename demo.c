@@ -23,8 +23,8 @@ void CutDemo() {
   FreeJieba(handle);
 }
 
-void CutNoPuncDemo() {
-  printf("CutNoPuncDemo:\n");
+void CutWithoutTagNameDemo() {
+  printf("CutWithoutTagNameDemo:\n");
   static const char* DICT_PATH = "./dict/jieba.dict.utf8";
   static const char* HMM_PATH = "./dict/hmm_model.utf8";
   static const char* USER_DICT = "./dict/user.dict.utf8";
@@ -33,7 +33,7 @@ void CutNoPuncDemo() {
 
   const char* s = "我是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。";
   size_t len = strlen(s);
-  CJiebaWord* words = CutNoPunc(handle, s, len);
+  CJiebaWord* words = CutWithoutTagName(handle, s, len, "x");
   CJiebaWord* x;
   for (x = words; x->word; x++) {
     printf("%*.*s\n", x->len, x->len, x->word);
@@ -78,6 +78,7 @@ void UserWordDemo()
 
   const char* s = "人艰不拆";
   size_t len = strlen(s);
+
   CJiebaWord* words = Cut(handle, s, len);
   CJiebaWord* x;
   for (x = words; x->word; x++) {
@@ -97,7 +98,7 @@ void UserWordDemo()
 
 int main(int argc, char** argv) {
   CutDemo();
-  CutNoPuncDemo();
+  CutWithoutTagNameDemo();
   ExtractDemo();
   UserWordDemo();
   return 0;
