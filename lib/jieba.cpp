@@ -52,7 +52,7 @@ CutWithoutTagName(Jieba handle, const char* sentence, size_t len, const char* ta
 	size_t i, j, offset = 0;
 
 	for (i = 0, j = 0; i < tag_words.size(); i++) {
-		if (tag_words[i].second != string(tagname)) {
+		if (tag_words[i].second != tagname) {
 			res[j].word = sentence + offset;
 			res[j].len = tag_words[i].first.size();
 			j ++;
