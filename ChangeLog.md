@@ -1,5 +1,9 @@
 # CJieba ChangeLog
 
+## latest
+
++ Upgrade [cppjieba] to v4.8.0
+
 ## v0.3.0
 
 + Upgrade [cppjieba] to v4.6.0
