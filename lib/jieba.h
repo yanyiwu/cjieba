@@ -5,7 +5,7 @@
 #include <stdbool.h>
 
 typedef void* Jieba;
-Jieba NewJieba(const char* dict_path, const char* hmm_path, const char* user_dict);
+Jieba NewJieba(const char* dict_path, const char* hmm_path, const char* user_dict, const char* idf_path, const char* stop_word_path);
 void FreeJieba(Jieba);
 
 typedef struct {

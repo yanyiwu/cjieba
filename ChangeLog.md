@@ -2,7 +2,7 @@
 
 ## latest
 
-+ Upgrade [cppjieba] to v4.8.0
++ Upgrade [cppjieba] to v5.0.0
 
 ## v0.3.0
 

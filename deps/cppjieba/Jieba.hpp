@@ -2,14 +2,17 @@
 #define CPPJIEAB_JIEBA_H
 
 #include "QuerySegment.hpp"
-#include "PosTagger.hpp"
-//#include "LevelSegment.hpp"
+#include "KeywordExtractor.hpp"
 
 namespace cppjieba {
 
 class Jieba {
  public:
-  Jieba(const string& dict_path, const string& model_path, const string& user_dict_path) 
+  Jieba(const string& dict_path, 
+        const string& model_path,
+        const string& user_dict_path, 
+        const string& idfPath, 
+        const string& stopWordPath) 
     : dict_trie_(dict_path, user_dict_path),
       model_(model_path),
       mp_seg_(&dict_trie_),
@@ -17,8 +20,7 @@ class Jieba {
       mix_seg_(&dict_trie_, &model_),
       full_seg_(&dict_trie_),
       query_seg_(&dict_trie_, &model_),
-      //level_seg_(&dict_trie_),
-      pos_tagger_(&dict_trie_, &model_) {
+      extractor(&dict_trie_, &model_, idfPath, stopWordPath) {
   }
   ~Jieba() {
   }
@@ -61,10 +63,22 @@ class Jieba {
   }
   
   void Tag(const string& sentence, vector<pair<string, string> >& words) const {
-    pos_tagger_.Tag(sentence, words);
+    mix_seg_.Tag(sentence, words);
+  }
+  string LookupTag(const string &str) const {
+    return mix_seg_.LookupTag(str);
   }
   bool InsertUserWord(const string& word, const string& tag = UNKNOWN_TAG) {
     return dict_trie_.InsertUserWord(word, tag);
+  }
+
+  void ResetSeparators(const string& s) {
+    //TODO
+    mp_seg_.ResetSeparators(s);
+    hmm_seg_.ResetSeparators(s);
+    mix_seg_.ResetSeparators(s);
+    full_seg_.ResetSeparators(s);
+    query_seg_.ResetSeparators(s);
   }
 
   const DictTrie* GetDictTrie() const {
@@ -73,7 +87,7 @@ class Jieba {
   const HMMModel* GetHMMModel() const {
     return &model_;
   }
- 
+
  private:
   DictTrie dict_trie_;
   HMMModel model_;
@@ -84,10 +98,9 @@ class Jieba {
   MixSegment mix_seg_;
   FullSegment full_seg_;
   QuerySegment query_seg_;
-  //LevelSegment level_seg_;
-  
-  PosTagger pos_tagger_;
-  
+
+ public:
+  KeywordExtractor extractor;
 }; // class Jieba
 
 } // namespace cppjieba

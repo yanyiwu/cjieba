@@ -9,8 +9,8 @@ using namespace std;
 
 extern "C" {
 
-Jieba NewJieba(const char* dict_path, const char* hmm_path, const char* user_dict) {
-  Jieba handle = (Jieba)(new cppjieba::Jieba(dict_path, hmm_path, user_dict));
+Jieba NewJieba(const char* dict_path, const char* hmm_path, const char* user_dict, const char* idf_path, const char* stop_words_path) {
+  Jieba handle = (Jieba)(new cppjieba::Jieba(dict_path, hmm_path, user_dict, idf_path, stop_words_path));
   return handle;
 }
 
