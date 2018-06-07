@@ -2,6 +2,7 @@ extern "C" {
     #include "jieba.h"
 }
 
+#include <cstring>
 #include "cppjieba/Jieba.hpp"
 #include "cppjieba/KeywordExtractor.hpp"
 
@@ -39,6 +40,39 @@ CJiebaWord* Cut(Jieba handle, const char* sentence, size_t len) {
   res[words.size()].word = NULL;
   res[words.size()].len = 0;
   return res;
+}
+
+CJiebaWordWithTag* CutWithTag(Jieba handle, const char* sentence, size_t len) {
+    cppjieba::Jieba* x = (cppjieba::Jieba*)handle;
+    vector<pair<string, string> > tag_words;
+    x->Tag(string(sentence, len), tag_words);
+
+    size_t i, offset = 0, buf_size = 0;
+    for(i = 0; i < tag_words.size(); i++) {
+        buf_size += sizeof(CJiebaWordWithTag) + tag_words[i].second.size() + 1;
+    }
+    buf_size += sizeof(CJiebaWordWithTag);
+
+    CJiebaWordWithTag* res = (CJiebaWordWithTag*)malloc(buf_size);
+    memset(res, '\0', buf_size);
+
+    char *ptr = reinterpret_cast<char*>(res);
+    for(i = 0; i < tag_words.size(); i++) {
+        CJiebaWordWithTag *current = (CJiebaWordWithTag*)ptr;
+        current->word = sentence + offset;
+        current->len = tag_words[i].first.size();
+        memcpy(current->tag, tag_words[i].second.data(), tag_words[i].second.size());
+        ptr += sizeof(CJiebaWordWithTag) + tag_words[i].second.size() + 1;
+        offset += tag_words[i].first.size();
+    }
+    CJiebaWordWithTag *current = (CJiebaWordWithTag*)ptr;
+    current->word = NULL;
+    current->len = 0;
+    return res;
+}
+
+void FreeWordTag(CJiebaWordWithTag* words) {
+    free(words);
 }
 
 CJiebaWord*
