@@ -34,6 +34,3 @@ g++ -std=c++11 -DLOGGING_LEVEL=LL_WARNING -o c_api.o -c src/c_api.cpp
 [CppJieba]:http://github.com/yanyiwu/cppjieba
 [libcppjieba]:http://github.com/yanyiwu/libcppjieba
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/yanyiwu/cjieba/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
