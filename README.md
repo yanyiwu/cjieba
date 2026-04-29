@@ -1,6 +1,6 @@
 # cjieba 
 
-[![Build Status](https://travis-ci.org/yanyiwu/cjieba.png?branch=master)](https://travis-ci.org/yanyiwu/cjieba)
+[![CI](https://github.com/yanyiwu/cjieba/actions/workflows/ci.yml/badge.svg)](https://github.com/yanyiwu/cjieba/actions/workflows/ci.yml)
 [![Author](https://img.shields.io/badge/author-@yanyiwu-blue.svg?style=flat)](http://yanyiwu.com/) 
 [![Performance](https://img.shields.io/badge/performance-excellent-brightgreen.svg?style=flat)](http://yanyiwu.com/work/2015/06/14/jieba-series-performance-test.html) 
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg?style=flat)](http://yanyiwu.mit-license.org)
@@ -17,14 +17,16 @@ make
 
 ## 编译相关
 
-如果编译报关于 `tr1/unordered_map` 的错时，
-解决方法是加上 `-std=c++0x` 或者 `-std=c++11` 选项即可，比如：
+默认 `make` 会使用 `-std=c++11` 编译 C++ 接口，并构建 `libjieba.a`
+和 `demo`。
+
+如果需要指定编译器或选项，可以覆盖 Makefile 变量：
 
 ```
-g++ -std=c++11 -DLOGGING_LEVEL=LL_WARNING -o c_api.o -c src/c_api.cpp
+make CC=clang CXX=clang++ CXXFLAGS="-std=c++11 -O2 -Wall -Wextra"
 ```
 
-还有就是选项 `-DLOGGING_LEVEL=LL_WARNING` 的含义是日志级别设置为警告级别以上才打日志，
+选项 `-DLOGGING_LEVEL=LL_WARNING` 的含义是日志级别设置为警告级别以上才打日志，
 如果不设置该选项则会连 DEBUG 或者 INFO 级别的日志也打出来。
 
 ## 客服
@@ -33,4 +35,3 @@ g++ -std=c++11 -DLOGGING_LEVEL=LL_WARNING -o c_api.o -c src/c_api.cpp
 
 [CppJieba]:http://github.com/yanyiwu/cppjieba
 [libcppjieba]:http://github.com/yanyiwu/libcppjieba
-

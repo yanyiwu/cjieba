@@ -20,7 +20,7 @@ void CutDemo() {
   CJiebaWord* words = Cut(handle, s, len); 
   CJiebaWord* x;
   for (x = words; x && x->word; x++) {
-    printf("%*.*s\n", x->len, x->len, x->word);
+    printf("%.*s\n", (int)x->len, x->word);
   }
   FreeWords(words);
   FreeJieba(handle);
@@ -36,7 +36,7 @@ void CutWithoutTagNameDemo() {
   CJiebaWord* words = CutWithoutTagName(handle, s, len, "x");
   CJiebaWord* x;
   for (x = words; x->word; x++) {
-    printf("%*.*s\n", x->len, x->len, x->word);
+    printf("%.*s\n", (int)x->len, x->word);
   }
   FreeWords(words);
   FreeJieba(handle);
@@ -57,7 +57,7 @@ void ExtractDemo() {
   CJiebaWord* words = Extract(handle, s, strlen(s), top_n); 
   CJiebaWord* x;
   for (x = words; x && x->word; x++) {
-    printf("%*.*s\n", x->len, x->len, x->word);
+    printf("%.*s\n", (int)x->len, x->word);
   }
   FreeWords(words);
   FreeExtractor(handle);
@@ -74,14 +74,14 @@ void UserWordDemo()
   CJiebaWord* words = Cut(handle, s, len);
   CJiebaWord* x;
   for (x = words; x->word; x++) {
-    printf("%*.*s\n", x->len, x->len, x->word);
+    printf("%.*s\n", (int)x->len, x->word);
   }
   FreeWords(words);
 
   JiebaInsertUserWord(handle, "人艰不拆");
   words = Cut(handle, s, len);
   for (x = words; x->word; x++) {
-    printf("%*.*s\n", x->len, x->len, x->word);
+    printf("%.*s\n", (int)x->len, x->word);
   }
   FreeWords(words);
 
@@ -89,6 +89,8 @@ void UserWordDemo()
 }
 
 int main(int argc, char** argv) {
+  (void)argc;
+  (void)argv;
   CutDemo();
   CutWithoutTagNameDemo();
   ExtractDemo();
