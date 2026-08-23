@@ -1,3 +1,5 @@
+
+
 # cjieba 
 
 [![CI](https://github.com/yanyiwu/cjieba/actions/workflows/ci.yml/badge.svg)](https://github.com/yanyiwu/cjieba/actions/workflows/ci.yml)
@@ -9,6 +11,8 @@
 独立出来作为一个仓库的原因是不想让 [CppJieba] 变太复杂和臃肿而已。
 
 ## 用法示例
+
+在仓库根目录执行：
 
 ```
 make
